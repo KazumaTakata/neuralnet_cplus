@@ -15,6 +15,13 @@
       "environment": [],
       "externalConsole": true,
       "MIMode": "lldb"
+    },
+    {
+        "name": "Launch",
+        "type": "lldb",
+        "request": "launch",
+        "program": "${workspaceFolder}/a.out",
+        
     }
   ]
 }
