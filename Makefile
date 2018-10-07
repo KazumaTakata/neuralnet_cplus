@@ -1,2 +1,2 @@
 all:
-	g++ -g main.cpp ./util/operation.cpp
+	g++ -g main.cpp ./util/vector.cpp
