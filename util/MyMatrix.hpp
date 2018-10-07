@@ -1,3 +1,10 @@
+#ifndef MYMATRIX
+#define MYMATRIX
+
+double sigmoid(double z);
+class MyMatrix;
+void MatrixMulti(MyMatrix MatrixResult, MyMatrix matrix1, MyMatrix matrix2);
+
 class MyMatrix
 {
 
@@ -34,3 +41,5 @@ class MyMatrix
         return a;
     }
 };
+
+#endif
