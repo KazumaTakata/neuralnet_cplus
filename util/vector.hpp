@@ -26,16 +26,18 @@ class NVector
   public:
     int Col;
     int Row;
-    double **matrix;
+    vector<vector<double>> matrix;
     NVector();
     NVector(int row, int col)
     {
         Col = col;
         Row = row;
-        matrix = MatrixGen();
-        MatrixInit(matrix);
+        matrix.resize(Row);
+        for (int i = 0; i < Row; ++i)
+            matrix[i].resize(Col);
+        MatrixInit();
     }
-    void MatrixInit(double **matrix)
+    void MatrixInit()
     {
         random_device rd{};
         mt19937 gen{rd()};
@@ -49,16 +51,16 @@ class NVector
             }
         }
     }
-    double **MatrixGen()
-    {
-        double **a = new double *[Row];
-        for (int i = 0; i < Row; ++i)
-        {
-            a[i] = new double[Col];
-        }
+    // double **MatrixGen()
+    // {
+    //     double **a = new double *[Row];
+    //     for (int i = 0; i < Row; ++i)
+    //     {
+    //         a[i] = new double[Col];
+    //     }
 
-        return a;
-    }
+    //     return a;
+    // }
 
     void AssignValue(vector<vector<double>> vector)
     {
