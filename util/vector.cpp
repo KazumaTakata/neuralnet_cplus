@@ -48,6 +48,18 @@ NVector elementWise(NVector input, double afunc(double))
     return result;
 }
 
+double Loss(NVector loss)
+{
+    double L = 0;
+
+    for (int i = 0; i < 10; i++)
+    {
+        L += pow(loss.matrix[0][i], 2);
+    }
+
+    return L;
+}
+
 NVector elementWiseMulti(NVector input1, NVector input2)
 {
     int N = input1.Row;
@@ -58,6 +70,51 @@ NVector elementWiseMulti(NVector input1, NVector input2)
         for (int j = 0; j < M; j++)
         {
             result.matrix[i][j] = input1.matrix[i][j] * input2.matrix[i][j];
+        }
+    }
+    return result;
+}
+
+NVector elementWiseScalar(NVector input1, double scalar)
+{
+    int N = input1.Row;
+    int M = input1.Col;
+    NVector result(N, M);
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            result.matrix[i][j] = input1.matrix[i][j] * scalar;
+        }
+    }
+    return result;
+}
+
+NVector elementWiseMinus(NVector input1, NVector input2)
+{
+    int N = input1.Row;
+    int M = input1.Col;
+    NVector result(N, M);
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            result.matrix[i][j] = input1.matrix[i][j] - input2.matrix[i][j];
+        }
+    }
+    return result;
+}
+
+NVector elementWisePlusExpand(NVector input1, NVector input2)
+{
+    int N = input1.Row;
+    int M = input1.Col;
+    NVector result(N, M);
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            result.matrix[i][j] = input1.matrix[i][j] + input2.matrix[0][j];
         }
     }
     return result;
@@ -75,6 +132,7 @@ NVector MatrixTranspose(NVector input1)
             result.matrix[j][i] = input1.matrix[i][j];
         }
     }
+    return result;
 }
 
 double NormalRandom()
@@ -85,7 +143,26 @@ double NormalRandom()
     return d(gen);
 }
 
-double sigmoid(double z)
+NVector toVector(int data_y)
+{
+    NVector result(1, 10);
+    for (int i = 0; i < 10; i++)
+    {
+        if (i == data_y)
+        {
+            result.matrix[0][i] = 1;
+        }
+        else
+        {
+            result.matrix[0][i] = 0;
+        }
+    }
+
+    return result;
+}
+
+double
+sigmoid(double z)
 {
     return 1.0 / (1.0 + exp(-z));
 }

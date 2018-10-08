@@ -1,2 +1,2 @@
 all:
-	g++ -g main.cpp ./util/vector.cpp
+	g++ -g  -std=c++11 main.cpp ./util/vector.cpp ./loader/mnist.cpp
